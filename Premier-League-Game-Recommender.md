@@ -6,21 +6,21 @@ Techniques/tools used:
 - Data Scraping: BeautifulSoup
 - Python: numpy, pandas, matplotlib, seaborn, scikit-learn
 
-### Overview
+## Overview
 I analyzed [this](https://www.kaggle.com/thefc17/epl-results-19932018) dataset of Premier League match statistics as well as data scraped from [this](https://www.fourfourtwo.com/us/100-best-premier-league-matches-ever) FourFourTwo article about the 100 best Premier League matches of all time in order to determine the factors that make a Premier League match "good" or "memorable". I then **built a tool to recommend a list of the best Premier League matches of the past to watch (matches prior to the 2010-2011 season, which is when I began following the Premier League)**. I tested three different classifier models on the data: logistic regression, random forest, and decision trees. I used F1 score to evaluate the precision and recall of the models and
 **need to finish, write results**
 
-### Motivation
+## Motivation
 Football (soccer) has always been a passion of mine. I grew up a Manchester United fan and idolized players such as Cristiano Ronaldo and Wayne Rooney, hoping to one day fulfill my dreams of playing in the Premier League. I fell well short of my lofty childhood ambitions but my love for the sport never faded and I follow the [Premier League](https://www.premierleague.com/) religiously to this day. I began following the Premier League during the 2010-2011 season, and I became used to watching games every week. During the COVID-19 pandemic, all Premier League games were postponed, and, craving my weekly football fix, I decided to build a tool to recommend past matches (prior to 2010-2011) to watch.
 
-### Methodology
+## Methodology
 To complete this project, I took the following steps:
 1. Data Collection
 2. Data Cleaning
 3. Data Exploration
 4. Model Building
 
-### Data Collection
+## Data Collection
 In this section, I describe the data that I obtained and the csv files they are stored in (accessible via [Github Repository](https://github.com/ryanwonghc/Premier-League-Game-Recommender))
 
 1. EPL_Set.csv
@@ -38,7 +38,7 @@ This file contains a list of all known Premier League rivalries. This is importa
 5. points_history.csv
 This file contains a list of the total Premier League points accumulated by each Premier League team since the inception of the Premier League. This is important because I used points accumulated as a metric to measure team success/popularity, then explored whether or not team popularity/success contributes to making a match memorable. I obtained this data by scraping [this](https://en.wikipedia.org/wiki/Premier_League_records_and_statistics) wikipedia page. The relevant code is in the ["total_points_scraper.py"](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/total_points_scraper.py) file.
 
-### Data Cleaning
+## Data Cleaning
 In order to
 
 1. Drop Data Prior to '95 - '96 Season
@@ -58,7 +58,7 @@ I added a column to represent whether a game is in the list of "Best Games" (bin
 
 After this stage, I ended up with a dataframe with 8740 entries and 9 features. The relevant code is in the ["Data Cleaning and Exploration.ipynb"](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/Data%20Cleaning%20and%20Exploration.ipynb) file.
 
-### Data Exploration
+## Data Exploration
 In this section, I made 6 hypotheses regarding what constitutes a "Best Game" and added column features to the dataframe to test these hypotheses. The hypotheses are as follows:
 
 A statistically significant portion of games in the "Best Games" set ...
@@ -183,7 +183,7 @@ The mode of the 'Best Games' data is 9 (May), suggesting that a large proportion
 
 After this stage, I ended up with a dataframe with 8740 entries and 16 features. The relevant code is in the ["Data Cleaning and Exploration.ipynb"](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/Data%20Cleaning%20and%20Exploration.ipynb) file.
 
-### Model Building and Performance
+## Model Building and Performance
 
 
 
@@ -191,7 +191,7 @@ After this stage, I ended up with a dataframe with 8740 entries and 16 features.
 ## Limitations
 
 
-### Future Work
+## Future Work
 1. Betting odds
 I believe that another predictor of whether or not a game is considered a "Best Game" is whether or not the game involved an upset, which is when a team defies the odds to beat the team favored to win the game. Data for betting odds for each of the matches was only available going back to 2000 so the 1995-1999 seasons would have to have been excluded from the analysis. It would be interesting to test this hypothesis and analyze the effect of the magnitude of the upset (a team with winning odds of 15/1 winning a game would be a much larger upset than a team with winning odds of 2/1)
 

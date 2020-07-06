@@ -128,6 +128,7 @@ Football has traditionally been a low scoring game, especially in comparison to 
 <p align="center">
   <img src="/images/fig5.png"/>
 </p>
+
 Statistics:
 |   | 0  | 1  |  2 | 3  | 4  | 5  | 6  |  7 |  8 | 9  | 10  |  11 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -149,6 +150,7 @@ Close games keep fans on the edge of their seats, and it can be more fun to see 
 <p align="center">
   <img src="/images/fig6.png"/>
 </p>
+
 Statistics:
 |   | 0  | 1  |  2 | 3  | 4  | 5  | 6  |  7 |  8 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -166,6 +168,7 @@ To test this hypothesis, I assigned each month a number from 0 (August) to 9 (Ma
 <p align="center">
   <img src="/images/fig7.png"/>
 </p>
+
 Statistics:
 |   | 0  | 1  |  2 | 3  | 4  | 5  | 6  |  7 |  8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|---|

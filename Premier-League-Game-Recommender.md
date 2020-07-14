@@ -262,7 +262,7 @@ From the scores and the confusion matrix, we see that this model has a high prec
 The following are the games that were not initially in the "Best Games" set but were predicted to be a memorable game.
 
 <p align="center">
-  <img src="/images/Posts/PL_images/table.png"/>
+  <img src="/images/table.png"/>
 </p>
 
 Looking at these games, it seems that one common factor amongst them is the high-scoring nature of these games (at least 6 total goals score, which is very rare for football). The popularity scores for these teams are also relatively high- the range of scores is (0,2), and each of these games have popularity scores of at least 1.63.

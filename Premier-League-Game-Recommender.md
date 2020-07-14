@@ -36,7 +36,7 @@ This file contains a list of all known Premier League rivalries. This is importa
 This file contains a list of the total Premier League points accumulated by each Premier League team since the inception of the Premier League. This is important because I used points accumulated as a metric to measure team success/popularity, then explored whether or not team popularity/success contributes to making a match memorable. I obtained this data by scraping [this](https://en.wikipedia.org/wiki/Premier_League_records_and_statistics) wikipedia page. The relevant code is in the ["total_points_scraper.py"](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/total_points_scraper.py) file.
 
 ## Data Cleaning
-In order to
+In order to perform prepare the data for analysis, I performed the following steps:
 
 1. Drop Data Prior to '95 - '96 Season
 Data was incomplete prior to this season, so I could not use earlier data. Thus I removed the data from the dataset.

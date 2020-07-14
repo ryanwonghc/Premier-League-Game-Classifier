@@ -5,13 +5,15 @@ import csv
 import difflib
 from teams_dict import team_list
 
+# Lists to store each piece of information needed
 teamA = []
 teamB = []
 teamAGoals = []
 teamBGoals = []
 date = []
 
-for x in range(10):
+# Scrape game information
+for x in range(10): # 10 pages in total
     if x == 0:
         my_url = 'https://www.fourfourtwo.com/features/ranked-10-best-premier-league-matches-ever'
     else:
@@ -27,6 +29,7 @@ for x in range(10):
     page_soup = soup(page_html, 'html.parser')
     best_games = page_soup.findAll('p')
 
+    # Add scraped data to appropriate list
     for bg in best_games:
         if bg.text[0:1].isdigit() and (bg.text[0:6] != '100-91'):
             desc = bg.text
@@ -58,11 +61,10 @@ for x in range(10):
             teamAGoals.append(score[0])
             teamBGoals.append(score[1])
 
-
-
+# Build dataframe out of the 5 lists
 df = pd.DataFrame({'teamA':teamA,'teamB':teamB,'teamAGoals':teamAGoals, 'teamBGoals':teamBGoals, 'date':date})
 
-# Standardize Names
+# Standardize names using difflib
 team_a = df['teamA'].tolist()
 team_b = df['teamB'].tolist()
 
@@ -83,4 +85,5 @@ for index, name in enumerate(team_b):
 df['teamA'] = team_a
 df['teamB'] = team_b
 
+# Export
 df.to_csv('best_games.csv', index=False, encoding='utf-8')

@@ -15,10 +15,11 @@ uClient.close()
 page_soup = soup(page_html, 'html.parser')
 tables = page_soup.findAll('table',class_='wikitable sortable')
 
-
+# Lists to store appropriate information
 teams = []
 total_points = []
 
+# Store scraped information in appropriate list
 for table in tables:
     rows = table.findAll('tr')
     for row in rows:
@@ -37,5 +38,8 @@ for index, name in enumerate(teams):
             teams[index] = x
             break
 
+# Build dataframe with the 2 lists
 df = pd.DataFrame({'Teams':teams, 'Total Points':total_points})
+
+# Export
 df.to_csv('points_history.csv', index=False, encoding='utf-8')

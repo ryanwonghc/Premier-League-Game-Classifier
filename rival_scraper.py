@@ -25,12 +25,12 @@ for rivalry in football_rivalries:
         for j in a:
             team_name = j.findAll(text=True)
             for teams in team_name:
-                if teams[0] != '[' and teams in team_dict:
+                if teams[0] != '[' and teams in team_dict: # Make sure team is in premier league, ignore [#] (wikipedia citing sources)
                     temp.append(teams)
         if len(temp) > 1:
             rivalry_list.append(temp)
 
-# write to csv
+# Export
 with open('rivalries.csv', mode='w') as riv_file:
     riv_write = csv.writer(riv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     for row in rivalry_list:

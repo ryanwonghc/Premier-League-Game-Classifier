@@ -1,13 +1,11 @@
 # Premier League Game Recommender
 
-[Project Github Repository](https://github.com/ryanwonghc/Premier-League-Game-Recommender)
-
 Techniques/tools used:
 - Data Scraping: BeautifulSoup
 - Python: numpy, pandas, matplotlib, seaborn, scikit-learn (Decision Trees, Random Forests, Linear Regression, Cross Validation, Pipeline), imblearn (SMOTE)
 
 ## Overview
-I analyzed [this](https://www.kaggle.com/thefc17/epl-results-19932018) dataset of Premier League match statistics as well as data scraped from [this](https://www.fourfourtwo.com/us/100-best-premier-league-matches-ever) FourFourTwo article about the 100 best Premier League matches of all time in order to determine the factors that make a Premier League match "good" or "memorable". I then **built a tool to recommend a list of the best Premier League matches of the past to watch**. I tested three different classifier models on the data: logistic regression, random forest, and decision trees. I used F1 score to evaluate the precision and recall of the models and concluded that a decision tree is the best model to use. I then fit a decision tree onto the entire dataset, performed hyperparameter tuning, and obtained an F1 score of 0.39 (recall score: 0.26, precision score: 0.81).
+I analyzed [this](https://www.kaggle.com/thefc17/epl-results-19932018) dataset of Premier League match statistics as well as data scraped from [this](https://www.fourfourtwo.com/us/100-best-premier-league-matches-ever) FourFourTwo article about the 100 best Premier League matches of all time in order to determine the factors that make a Premier League match "good" or "memorable". I then **built a tool to recommend a list of the best Premier League matches of the past to watch**. I performed feature engineering with a combination of the aforementioned dataset and additional data I scraped to find the strongest predictors regarding what makes a game memorable. I tested three different classifier models on the data: logistic regression, random forest, and decision trees. I used F1 score to evaluate the precision and recall of the models and concluded that a decision tree is the best model to use. I then fit a decision tree onto the entire dataset, performed hyperparameter tuning, and obtained an F1 score of 0.39 (recall score: 0.26, precision score: 0.81).
 
 ## Motivation
 Football (soccer) has always been a passion of mine. I grew up a Manchester United fan and idolized players such as Cristiano Ronaldo and Wayne Rooney, hoping to one day fulfill my dreams of playing in the Premier League. I fell well short of my lofty childhood ambitions but my love for the sport never faded and I follow the [Premier League](https://www.premierleague.com/) religiously to this day. I began following the Premier League during the 2010-2011 season, and I became used to watching games every week. During the COVID-19 pandemic, all Premier League games were postponed, and, craving my weekly football fix, I decided to build a tool to recommend past matches (prior to 2010-2011) to watch.
@@ -68,7 +66,8 @@ A statistically significant portion of games in the "Best Games" set ...
 5. Are close games
 6. Are played during the latter stages of the season
 
-1. A statistically significant portion of games in the "Best Games" set involve popular/successful teams
+#### Hypothesis 1
+A statistically significant portion of games in the "Best Games" set involve popular/successful teams
 To test this hypothesis, I first calculated the frequency at which each team appeared in the set of "Best Games". I then charted the data in a bar chart, shown below:
 <p align="center">
   <img src="/images/fig1.png"/>
@@ -88,7 +87,8 @@ Charting the popularity scores for each game in the "Best Games" set versus the 
 
 **Verdict: Correct**
 
-2. A statistically significant portion of games in the "Best Games" set are games played between rivals
+#### Hypothesis 2
+A statistically significant portion of games in the "Best Games" set are games played between rivals
 Using collected data on a list of Premier League rivalries, I used pie charts to show the ratio of rival games to non-rival games in both the "Best Games" set and the rest of the games. The charts are shown below:
 <p align="center">
   <img src="/images/fig3.png"/>
@@ -105,7 +105,8 @@ In terms of absolute numbers, there are a lot more rival games not in the 'Best 
 
 **Verdict: Correct**
 
-3. A statistically significant portion of games in the "Best Games" set involve comeback wins
+#### Hypothesis 3
+A statistically significant portion of games in the "Best Games" set involve comeback wins
 I defined a comeback a game in which the team losing at half time wins the game, even though this is not always the case (teams can turn around a deficit in the same half that they fell behind in), as it was the best I could do given the collected data. I hypothesize that comeback games are more memorable than regular games because of the emotional rollercoasters that fans go through when watching these games.
 
 I again used pie charts to show the ratio of comeback to non-comeback games in both the "Best Games" set and the rest of the games. The charts are shown below:
@@ -122,7 +123,8 @@ As shown in the chart above, comeback wins do appear in the "Best games" set at 
 
 **Verdict: Correct, but statistically insignificant**
 
-4. A statistically significant portion of games in the "Best Games" set are high scoring games
+#### Hypothesis 4
+A statistically significant portion of games in the "Best Games" set are high scoring games
 Football has traditionally been a low scoring game, especially in comparison to other popular sports such as basketball. As a result, high scoring games are often more memorable to fans. In order to test this hypothesis, I summed up the total number of goals for each game and charted this information for the "Best Games" set as well as the rest of the data in bar charts, shown below:
 <p align="center">
   <img src="/images/fig5.png"/>
@@ -144,7 +146,8 @@ From the charts above, we can come to several conclusions:
 
 **Verdict: Correct**
 
-5. A statistically significant portion of games in the "Best Games" set are close games
+#### Hypothesis 5
+A statistically significant portion of games in the "Best Games" set are close games
 Close games keep fans on the edge of their seats, and it can be more fun to see your favorite team come out on top after a close game as opposed to a one-sided game. In order to test this hypothesis, I calculated the goal difference of each game (goals scored by winner - goals scored by loser). Drawn games have a goal difference of 0. I then charted this information for the "Best Games" set as well as the rest of the data in bar charts, shown below:
 <p align="center">
   <img src="/images/fig6.png"/>
@@ -160,7 +163,8 @@ Both graphs are positively skewed. The mode of the 'Best Games' set is 1 goal, w
 
 **Verdict: Correct, but not statistically significant**
 
-6. A statistically significant portion of games in the "Best Games" set are played during the latter stages of the season
+#### Hypothesis 6
+A statistically significant portion of games in the "Best Games" set are played during the latter stages of the season
 Some Premier League games matter more than others. Games played towards the end of the season can have a large impact on the league table because at the latter stages of the season, players become fatigued both mentally and physically, so results at this stage can have a large impact on the morale of players. These games are more high-stakes as a result and can be more memorable. Furthermore, results at this stage can mathematically confirm a team's place in the league table (confirmed as champions, confirmed spot in European competition, confirmed relegation, etc.) and the fate of their rivals or teams close to them in the table, which can have a major emotional and financial impact on all relevant teams. As a Manchester United fan, Manchester City's 3-2 win over QPR in the final game of the 2011-12 season to win the premier league comes to mind.
 
 To test this hypothesis, I assigned each month a number from 0 (August) to 9 (May), as Premier league seasons are played from August to May. I then charted the number of games played in each month. The results are as follows:
@@ -183,12 +187,123 @@ The mode of the 'Best Games' data is 9 (May), suggesting that a large proportion
 After this stage, I ended up with a dataframe with 8740 entries and 16 features. The relevant code is in the ["Data Cleaning and Exploration.ipynb"](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/Data%20Cleaning%20and%20Exploration.ipynb) file.
 
 ## Model Building and Performance
+#### Methodology
+I used classification algorithms to classify games as either in or out of the 'Best Games' set. The list of games classified as part of the "Best Games" set served as the list of recommended games to rewatch during quarantine. I compared the results of three classification algorithms: Logistic Regression, Decision Tree, and Random Forest.
 
-test
+The metric I used to evaluate the models was the F1 score, which weighs precision and recall equally. I believe recall is an important metric because there is no point in creating a list of recommendations if a minimal amount of games on the list are actually worth rewatching. At the same time, precision is important because I do not want to waste my time watching a large number of games that should have been classified as unmemorable. I anticipated the precision of the model to be fairly low due to the highly imbalanced nature of the data.
+
+#### Choosing Features
+To minimize overfitting and training time, I only trained the model with features that correlate the most with the dependent variable. To do so, I decided to plot a correlation heatmap and take the 5 most highly correlated features.
+
+<p align="center">
+  <img src="/images/corrmat.png"/>
+</p>
+
+According to the heatmap, the top five features are:
+
+- Total Goals
+- FTHG (Full Time Home Goals)
+- FTAG (Full Time Away Goals)
+- Rival Game
+- Comeback
+
+However, we also see that Total Goals is very highly correlated to FTAG and FTHG. This is because Total Goals is the sum of FTAG and FTHG. To ensure collinearity, we will not consider FTAG and FTHG. We take the next 4 most highly correlated variables, resulting in the following features:
+
+- Total Goals
+- Rival Game
+- Comeback
+- Popularity Score
+- ~~HTAG (Half Time Away Goals): also highly correlated with Total Goals~~
+- ~~HTHG (Half Time Hway Goals): also highly correlated with Total Goals~~
+- ~~Goal Difference: also highly correlated with Total Goals~~
+- HTR (Half Time Result)
+
+#### Balancing Classes using SMOTE
+As previously mentioned, the data is highly imbalanced. Only 100 samples that are classified as a "Best Game" while 8640 samples are not. Since there was a clear imbalance between the number of samples in each class, I needed to either oversample data from the minority class (the 'Best Games' class), or undersample data from the majority class to compensate. I chose to oversample from the minority class using SMOTE (Synthetic Minority Oversampling TEchnique) because if I undersample the classifier may not have enough data (only 200 samples) to classify the samples with high precision and recall.
+
+#### Pipelines and KFold Cross Validation
+I created a Pipeline for each classifier (decision tree, random forest, logistic regression) to simplify the process of transforming the data (using SMOTE) then applying the classifier, as well as to ensure that I could cross validate the F1 scores of each classifier type by providing it with different parameters (input data). I performed cross validation by using the KFolds cross-validator to split the data into train/test splits. As per the Pareto Principle, I used an 80/20 train-test split, splitting the data into 5 folds.
+
+#### Choosing the Best Performing Classifier
+The performance of each classifier is as follows:
+```
+Logistic Regression F1: 0.08881155233993385
+Logistic Regression precision: 0.04732568063882119
+Logistic Regression recall: 0.8291491841491843
 
 
-## Limitations
+Decision Tree F1: 0.0952839031489884
+Decision Tree precision: 0.06264183157268263
+Decision Tree recall: 0.25952547452547453
 
+
+Random Forest F1: 0.08021591254261323
+Random Forest precision: 0.052910848549946286
+Random Forest recall: 0.24271228771228773
+```
+Since the decision tree had the highest F1 score, my final model was fitted using a decision tree.
+
+#### Final Model Building
+I used GridSearchCV along with 5-fold cross validation to tune the hyperparameters. After fitting the model and outputting a prediction, the model's performance was determined to be as follows:
+```
+F1 score: 0.3893805309734513
+Recall score: 0.2558139534883721
+Precision score: 0.8148148148148148
+```
+Additionally, the confusion matrix is as follows:
+
+<p align="center">
+  <img src="/images/conmat.png"/>
+</p>
+
+From the scores and the confusion matrix, we see that this model has a high precision and a low recall. This is surprising as it was the other way around previously (when deciding which model to choose). I think this was due to the hyperparameter tuning limiting the maximum depth of the decision tree, preventing overfitting. Overall, I think this model performed quite well; it is very precise, meaning that I do not have to waste my time watching boring games. While it was unable to correctly classify a majority of the minority class, I am not too concerned as the main objective of this project is to find any games worthy of watching- the number of games found does not matter too much (unless I finish watching all the recommended games and run out of games to watch).
+
+#### List of Recommendations and Observations
+The following are the games that were not initially in the "Best Games" set but were predicted to be a memorable game.
+Date       | HomeTeam          | AwayTeam          | FTHG | FTAG | FTR | HTHG | HTAG | HTR | Season  | DateTime | Popularity Score | Rival Game | Comeback | Total Goals | Goal Difference | Month | Predicted |
+| ---- | --------- | ---------- | ----------------- | ----------------- | ---- | ---- | --- | ---- | ---- | --- | ------- | -------- | ---------------- | ---------- | -------- | ----------- | --------------- | ----- | --------- |
+| 3660 | 0         | 1/2/05     | Arsenal           | Manchester United | 2    | 4    | \-1 | 2    | 1    | 1   | 2004-05 | 2/1/05   | 1.90175277       | 1          | 1        | 6           | 2               | 6     | 1         |
+| 5273 | 0         | 25/04/2009 | Manchester United | Tottenham Hotspur | 5    | 2    | 1   | 0    | 2    | \-1 | 2008-09 | 4/25/09  | 1.73570111       | 0          | 1        | 7           | 3               | 8     | 1         |
+| 6336 | 0         | 26/02/2012 | Arsenal           | Tottenham Hotspur | 5    | 2    | 1   | 2    | 2    | 0   | 2011-12 | 2/26/12  | 1.63745387       | 1          | 0        | 7           | 3               | 6     | 1         |
+| 6569 | 0         | 17/11/2012 | Arsenal           | Tottenham Hotspur | 5    | 2    | 1   | 3    | 1    | 1   | 2012-13 | 11/17/12 | 1.63745387       | 1          | 0        | 7           | 3               | 3     | 1         |
+| 7987 | 0         | 14/08/2016 | Arsenal           | Liverpool         | 3    | 4    | \-1 | 1    | 1    | 0   | 2016-17 | 8/14/16  | 1.75461255       | 0          | 0        | 7           | 1               | 0     | 1         |
+
+Looking at these games, it seems that one common factor amongst them is the high-scoring nature of these games (at least 6 total goals score, which is very rare for football). The popularity scores for these teams are also relatively high- the range of scores is (0,2), and each of these games have popularity scores of at least 1.63.
+
+The final list of games predicted to be a memorable game are as follows:
+| Date       | HomeTeam          | AwayTeam          |
+| ---------- | ----------------- | ----------------- |
+| 23/10/1999 | Chelsea           | Arsenal           |
+| 12/2/00    | West Ham United   | Bradford City     |
+| 25/02/2001 | Manchester United | Arsenal           |
+| 29/09/2001 | Tottenham Hotspur | Manchester United |
+| 19/11/2001 | Charlton Athletic | West Ham United   |
+| 7/2/04     | Everton           | Manchester United |
+| 9/4/04     | Arsenal           | Liverpool         |
+| 22/01/2005 | Norwich City      | Middlesbrough     |
+| 1/2/05     | Arsenal           | Manchester United |
+| 28/04/2007 | Everton           | Manchester United |
+| 29/09/2007 | Portsmouth        | Reading           |
+| 29/12/2007 | Tottenham Hotspur | Reading           |
+| 21/04/2009 | Liverpool         | Arsenal           |
+| 25/04/2009 | Manchester United | Tottenham Hotspur |
+| 20/09/2009 | Manchester United | Manchester City   |
+| 22/11/2009 | Tottenham Hotspur | Wigan Athletic    |
+| 20/11/2010 | Arsenal           | Tottenham Hotspur |
+| 28/08/2011 | Manchester United | Arsenal           |
+| 23/10/2011 | Manchester United | Manchester City   |
+| 29/10/2011 | Chelsea           | Arsenal           |
+| 26/02/2012 | Arsenal           | Tottenham Hotspur |
+| 22/04/2012 | Manchester United | Everton           |
+| 17/11/2012 | Arsenal           | Tottenham Hotspur |
+| 19/05/2013 | West Bromwich     | Manchester United |
+| 23/01/2016 | Norwich City      | Liverpool         |
+| 14/08/2016 | Arsenal           | Liverpool         |
+| 26/11/2016 | Swansea City      | Crystal Palace    |
+
+By looking at the complete list of recommended matches, we can see that the trend of the games being high scoring carries over; however, the popularity score does not. We can thus conclude that the largest predictor of whether or not a game is worthy of rewatching (according to the model) is the total number of goals scored in that game.
+
+The jupyter notebook and relevant code can be found [here](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/Model%20Building.ipynb). After this stage, I was able to generate a dataframe (which I converted to a csv file that can be found [here](https://github.com/ryanwonghc/Premier-League-Game-Recommender/blob/master/recommended_matches.csv)) containing 27 recommended matches (not in any order).
 
 ## Future Work
 1. Betting odds

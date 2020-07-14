@@ -260,6 +260,7 @@ From the scores and the confusion matrix, we see that this model has a high prec
 
 #### List of Recommendations and Observations
 The following are the games that were not initially in the "Best Games" set but were predicted to be a memorable game.
+
 Date       | HomeTeam          | AwayTeam          | FTHG | FTAG | FTR | HTHG | HTAG | HTR | Season  | DateTime | Popularity Score | Rival Game | Comeback | Total Goals | Goal Difference | Month | Predicted |
 | ---- | --------- | ---------- | ----------------- | ----------------- | ---- | ---- | --- | ---- | ---- | --- | ------- | -------- | ---------------- | ---------- | -------- | ----------- | --------------- | ----- | --------- |
 | 3660 | 0         | 1/2/05     | Arsenal           | Manchester United | 2    | 4    | \-1 | 2    | 1    | 1   | 2004-05 | 2/1/05   | 1.90175277       | 1          | 1        | 6           | 2               | 6     | 1         |
